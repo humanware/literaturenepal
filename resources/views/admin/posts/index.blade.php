@@ -5,6 +5,19 @@
 @endsection
 
 @section('content')
+    @if(Session::has('deleted_post'))
+        <div class="alert alert-danger">
+            {{session('deleted_post')}}
+        </div>
+    @elseif(Session::has('updated_post'))
+        <div class="alert alert-success">
+            {{session('updated_post')}}
+        </div>
+    @elseif(Session::has('created_post'))
+        <div class="alert alert-success">
+            {{session('created_post')}}
+        </div>
+    @endif
     <table class="table">
         <thead>
         <tr>
@@ -27,7 +40,7 @@
                     <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
                     <td><img height="50" src="{{ $post->picture ? $post->picture->path : 'http://placehold.it/50x50' }}" /></td>
                     <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->title}}</a></td>
-                    <td>{{$post->body}}</td>
+                    <td>{{ str_limit($post->body, 20) }}</td>
                     <td>{{$post->created_at->diffForHumans()}}</td>
                     <td>{{$post->updated_at->diffForHumans()}}</td>
                 </tr>
