@@ -2,10 +2,16 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
+    use Sluggable;
+    use SluggableScopeHelpers;
+
     protected $fillable = [
         'user_id',
         'category_id',
@@ -13,6 +19,14 @@ class Post extends Model
         'title',
         'body'
     ];
+
+    public function sluggable() {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
     public function user() {
         return $this->belongsTo('App\User');
