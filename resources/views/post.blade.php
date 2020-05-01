@@ -18,12 +18,12 @@
     <hr>
 
     <!-- Preview Image -->
-    <img class="img-responsive" src="{{$post->picture->path}}" alt="">
+    <img class="img-responsive" src="{{$post->picture ? $post->picture->path : $post->photoPlaceholder()}}" alt="">
 
     <hr>
 
     <!-- Post Content -->
-    {{$post->body}}
+    {!! $post->body !!}
 
     <hr>
 

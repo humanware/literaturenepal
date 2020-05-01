@@ -6,6 +6,8 @@
 
 @section('content')
 
+    @include('includes.tinyeditor')
+
     <div class="row">
         <div class="col-md-12">
             @include('includes.form_errors')
@@ -14,7 +16,7 @@
 
     <div class="row">
         <div class="col-md-3">
-            <img class="img-responsive img-rounded" src="{{ $post->picture ? $post->picture->path : 'http://placehold.it/400x400' }}" />
+            <img class="img-responsive img-rounded" src="{{$post->picture ? $post->picture->path : $post->photoPlaceholder()}}" />
         </div>
         <div class="col-md-9">
             {!! Form::model($post, ['method'=>'PATCH', 'action'=>['AdminPostsController@update', $post->id], 'files'=>true]) !!}

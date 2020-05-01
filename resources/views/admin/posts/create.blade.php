@@ -6,6 +6,8 @@
 
 @section('content')
 
+    @include('includes.tinyeditor')
+
     <div class="row">
         <div class="col-md-12">
             @include('includes.form_errors')
